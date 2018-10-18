@@ -125,24 +125,11 @@ class undulator:
         return matx, maty
 
 
-#    def getUndkb(scale, undtype = 'helical', ux = None, uy = None, \
-#                 tuning = None, kbxSF = None, kbySF = None):
-#
-#        if (self.undtype == 'planepole'):
-#            self.kbxn = 0.
-#            kbyn = scale.aw / 2. / np.sqrt(2) / scale.rho / scale.gamma # 'natural' focusing wavenumber
-#
-#        elif (self.undtype == 'curved'):
-#            kxu = np.sqrt(scale.eta / 8. / scale.rho**2)
-#            kyu = np.sqrt(scale.eta / 8. / scale.rho**2)
-#            kbxn = scale.aw / np.sqrt(2.*scale.eta) / scale.gamma *kxu
-#            kbyn = scale.aw / np.sqrt(2.*scale.eta) / scale.gamma *kyu
-#
-#        elif (self.undtype == 'helical'):
-#            kbxn = scale.aw / 2. / np.sqrt(2) / scale.rho / scale.gamma # 'natural' focusing wavenumber
-#            kbyn = scale.aw / 2. / np.sqrt(2) / scale.rho / scale.gamma # 'natural' focusing wavenumber
-#
-#        else:
-#            kbxn = scale.aw / 2. / np.sqrt(2) / scale.rho / scale.gamma # 'natural' focusing wavenumber
-#            kbyn = scale.aw / 2. / np.sqrt(2) / scale.rho / scale.gamma # 'natural' focusing wavenumber
-#            awrms = scale.aw / np.sqrt(2.) * np.sqrt(ux**2 + uy**2)
+    def getUndkb(self, scale):
+        kbx = np.sqrt(self.kbxn**2. + self.kbxSF**2.)
+        kby = np.sqrt(self.kbyn**2. + self.kbySF**2.)
+
+        kbx = kbx / scale.lg
+        kby = kby / scale.lg
+
+        return kbx, kby

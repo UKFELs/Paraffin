@@ -36,6 +36,10 @@ def SU2Matched(fnamein, puffVars, undmod, qf, DL, twx1=False, twy1=False, twx2=F
 
     calcdtwy = False
 
+    qFODO = True
+    if (qf == 0.):
+        qFODO = False
+
 #  Twiss parameters of beam before matching:
 
     if (not twx1):
@@ -64,7 +68,10 @@ def SU2Matched(fnamein, puffVars, undmod, qf, DL, twx1=False, twy1=False, twx2=F
 
     calcdtwy = False
     if (not twx2):
-        twx2, twy2 = getTwiss.getFODOTwiss(puffVars, undmod, qf, DL, twxr1[0], twyr1[0])
+        if qFODO:
+            twx2, twy2 = getTwiss.getFODOTwiss(puffVars, undmod, qf, DL, twxr1[0], twyr1[0])
+        else:
+            twx2, twy2 = getTwiss.getUndTwiss(puffVars, undmod, twxr1[0], twyr1[0])
         calcdtwy = True
         twxr2 = twx2
     else:
@@ -75,7 +82,10 @@ def SU2Matched(fnamein, puffVars, undmod, qf, DL, twx1=False, twy1=False, twx2=F
         if (calcdtwy):
             twyr2 = twy2
         else:
-            twx2, twy2 = getTwiss.getFODOTwiss(puffVars, undmod, qf, DL, twxr1[0], twyr1[0])
+            if qFODO:
+                twx2, twy2 = getTwiss.getFODOTwiss(puffVars, undmod, qf, DL, twxr1[0], twyr1[0])
+            else:
+                twx2, twy2 = getTwiss.getUndTwiss(puffVars, undmod, twxr1[0], twyr1[0])
             twyr2 = twy2
     else:
         twyr2 = twy2
