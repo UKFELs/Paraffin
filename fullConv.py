@@ -1,3 +1,11 @@
+# Copyright 2012-2018, University of Strathclyde
+# Authors: Lawrence T. Campbell and Piotr Traczykowski
+# License: BSD-3-Clause
+
+"""
+Simple example script for using different packages in Paraffin.
+"""
+
 import sys
 import numpy as np
 from paraffin import SU2Matched
