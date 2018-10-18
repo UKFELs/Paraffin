@@ -133,6 +133,46 @@ def getFODOTwiss(puffVars, undmod, f, DL, emitx, emity):
     twissy = [emitx, betay, alphay]
     return twissx, twissy
 
+def getUndTwiss(puffVars, undmod, emitx, emity):
+    """
+    This function gets the transport matrix for a simple FODO lattice with
+    quads of strength f (focus factor), and undulator modules described by 
+    undmod, with drift lengths between undulator modules of DL (in metres).
+    
+    Returns arrays twissx, twissy, which are 3 element lists containing the
+    rms sigma, beta, and alpha of x and y, respectively.
+    """
+    
+    kx, ky = undmod.getUndkb(puffVars)
+    #sigx = np.sqrt(emitx / kx)    
+    #sigy = np.sqrt(emity / ky)
+    
+    if (kx>0.):
+        betax = 1 / kx
+    else:
+        if (ky > 0.):
+            betax = 1 / ky
+        else:
+            betax = 1.
+    if (ky>0.):
+        betay = 1 / ky
+    else:
+        if (kx > 0.):
+            betay = 1 / kx
+        else:
+            betay = 1.
+    
+    # For no drifts, no quads, single long undulator, Twiss param alpha = 0
+    
+    alphax = 0.
+    alphay = 0.
+    
+    twissx = [emitx, betax, alphax]
+    twissy = [emity, betay, alphay]
+    return twissx, twissy
+
+
+
 #print fullMaty
 # C = fullMatx[0][0]
 # S = fullMatx[0][1]
@@ -160,28 +200,41 @@ def getFODOTwiss(puffVars, undmod, f, DL, emitx, emity):
 
 # Puffin Python data class, holds scaling parameters and physical constants
 
+iSingleUnd = 0
+iFODO = 1
+
+iLatt = iSingleUnd
+
 puffVars = puffData()
 
 # Initialize CLARA base parameters
 
-puffVars.aw = 0.8745*np.sqrt(2.)   # The PEAK!!!
-puffVars.gamma0 = 489.237
-puffVars.lw = 0.025
-puffVars.rho = 0.005
+puffVars.aw = 3.5 # 0.8745*np.sqrt(2.)   # The PEAK!!!
+puffVars.gamma0 = 26700
+puffVars.lw = 0.03
+puffVars.rho = 7.409e-4
 puffVars.undtype = 'planepole'
 puffVars.ux = 0.
 puffVars.uy = 1.
 
-emitx = 1.022e-9
-emity = 1.022e-9
+emitx = 0.4e-6 / 26700
+emity = 0.4e-6 / 26700
 
 # Generate the rest of the Puffin scaling from the above
 
 puffVars.genParams()  # generate rest of scaled params
 
-f = 3.22 * puffVars.lg
-DL = 24. * puffVars.lw # Drift lengths
+f = 2.71 * puffVars.lg
+DL = 7.85 * puffVars.lw # Drift lengths
 
 undmod = undulator(puffVars, undtype = 'planepole', Nw = 26)
 
-twx, twy = getFODOTwiss(puffVars, undmod, f, DL, emitx, emity)
+
+if (iLatt==iFODO):
+    twx, twy = getFODOTwiss(puffVars, undmod, f, DL, emitx, emity)
+else:
+    twx, twy = getUndTwiss(puffVars, undmod, emitx, emity)
+
+
+
+print twx, twy
