@@ -1,19 +1,31 @@
+# Copyright 2012-2018, University of Strathclyde
+# Authors: Piotr Traczykowski & Lawrence T. Campbell
+# License: BSD-3-Clause
+
 # -*- coding: utf-8 -*-
 """
 Created on Tue Oct 13 17:03:14 2015
 
 @author: piotrt
 """
+
+####
+####
+##  'SU' format:
+##
+## x, y, z - x, y, and z macroparticle coordinates, in metres
+## px, py, pz - (px, py, pz)/mc, normalized macroparticle momenta (normalize to 
+##              mc, where m is rest electron mass, and c is the speed of light)
+## wghts - macroparticle weights, in units if the number of real electrons the
+##         the macroparticle represents.
+
 # Import necessary libraries
 import tables
 import numpy as np
 import gc
 import sys
 from .. import SU  # SU Format
-#import getTwiss
-#import matchTwiss
 from ..puffin import puffData
-#from undulator import undulator
 
 def SU2Puffin(fnamein, puffVars = False):
 

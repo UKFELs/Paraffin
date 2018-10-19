@@ -1,4 +1,19 @@
-import tables
+# Copyright 2012-2018, University of Strathclyde
+# Authors: Piotr Traczykowski & Lawrence T. Campbell
+# License: BSD-3-Clause
+
+####
+####
+##  'SU' format:
+##
+## x, y, z - x, y, and z macroparticle coordinates, in metres
+## px, py, pz - (px, py, pz)/mc, normalized macroparticle momenta (normalize to 
+##              mc, where m is rest electron mass, and c is the speed of light)
+## wghts - macroparticle weights, in units if the number of real electrons the
+##         the macroparticle represents.
+
+
+import tables  # for reading and writing hdf5 files
 
 def readSUF(fname):
     f=tables.open_file(fname,'r')

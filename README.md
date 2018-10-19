@@ -22,15 +22,15 @@ in this directory to install as a Python package. The Python package `paraffin` 
 
 The routine `SU2Matched` will read in a file, in SU format, and produce a second file, in SU format, which is matched to the periodic lattice specified by the user.
 
-The periodic lattice is assumed to be either a FODO lattice or a single undulator. The FODO lattice is assumed to begin with a half strength (that is, a half length) quad, focusing in x and defocusing in y, followed by a free space drift, then an undulator module, then a free space drift, then a quad (defocusing in x), then a drift, then an undulator module, then a drift, then a final half-strength quad (focusing in x). The lattice is specified by passing the subroutine an instance of the undulator module class, the quad focusing factor (the magnitude of which is assumed equal in x and y), and the separation distance between undulator modules (NOTE: **not** the distance from undulator to quad!!).
+The periodic lattice is assumed to be either a FODO lattice or a single undulator. The FODO lattice is assumed to begin with a half strength (that is, a half length) quad, focusing in x and defocusing in y, followed by a free space drift, then an undulator module, then a free space drift, then a quad (defocusing in x), then a drift, then an undulator module, then a drift, then a final half-strength quad (focusing in x). The lattice is specified by passing the subroutine an instance of the undulator module class, the quad focusing factor (the magnitude of which is assumed equal in x and y, see below), and the separation distance between undulator modules (NOTE: **not** the distance from undulator to quad!!).
 
 If a quad focusing factor of zero is passed to the function, then the beam will be matched to the undulator only. The undulator may have a natural focusing channel and an optional **strong** intra-undulator focusing channel. The beam will be matched to take both into account.
 
-The lattice is specified with a custom undulator class, (`undmod`) below, which describes the undulator module, and the 
-
+For example, the routine can be called with:
 ```
 fnameout = SU2Matched(fnamein, puffVars, undmod, qf, DL)
 ```
+where `fnamein` is the filename of the particle file to be matched, in SU format, and `fnameout` is the name of the output file which is written by the function, containing the matched beam, in SU format.
 
 ### Other utilities:
 
@@ -55,7 +55,7 @@ Same as `getFODOTwiss`, but for a single undulator rather than a periodic lattic
 ```
 x2, px2, y2, py2 = matchTwiss(x, px, y, py, TX1, TX2, TY1, TY2)
 ```
-This performs a transform on the beam, to match from Twiss parameters `TX1` and `TY1` to `TX2` and `TY2`. In this case, Twiss parameters take the form of a 2-element list or array, containing beta, and alpha.
+This performs a transform on the given beam transverse coordinates, to match *from* Twiss parameters `TX1` and `TY1` to `TX2` and `TY2`. In this case, Twiss parameters take the form of a 2-element list or array, containing beta, and alpha. Particle coordinates are input as arrays, `x` and `y` are the particle coordinates in meters, and `px` and `py` are the transverse phase space coordinates `dx/dz` and `dy/dz`, respectively.
 
 ```
 twxt, twyt = getBeamTwiss(MPs)
