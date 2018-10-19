@@ -16,7 +16,7 @@ pip install .
 
 in this directory to install as a Python package. The Python package `paraffin` will then be available for use in your own Python scripts or functions (see the supplied exemplar `fullConv.py` script for an example of use).
 
-## Beam matching/FEL FODO lattice routines:
+## Beam matching and focusing lattice routines:
 
 ### Top-level routine:
 
