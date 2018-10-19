@@ -50,7 +50,7 @@ This performs a transform on the beam, to match from Twiss parameters `TX1` and 
 ```
 twxt, twyt = getBeamTwiss(MPs)
 ```
-
+This calculates and returns the Twiss parameters, in x and y respectively, of the beam in the input array MPs.
 
 ### Setting up the elements
 
