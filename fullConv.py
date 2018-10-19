@@ -17,6 +17,8 @@ from paraffin import SU2Puffin
 ##### FOR NEW OUTER DRIVER:
 def fullConv(fnamein):
 
+# Create an instance of the Puffin class
+
     puffVars = puffData()
 
 # Initialize CLARA base parameters
