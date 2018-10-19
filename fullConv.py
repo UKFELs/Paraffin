@@ -78,7 +78,7 @@ def fullConv(fnamein):
 ## specified in the input, but can be overridden in the input to the function.
 ## If the qf quad factor is = 0, then the Twiss parameters to match to are
 ## calculated from the undulator focusing ONLY (no FODO).
-
+##
 ## Here, there is no twx1 or twy1 specified, so it will be calculated from the
 ## beam file, global across the whole beam.
 
