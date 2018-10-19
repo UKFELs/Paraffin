@@ -4,7 +4,17 @@ A collection of pre and post processing tools for Puffin.
 
 Includes packages for matching the beam to a periodic lattice, scaling particle data from SU to Puffin notation (and vice-versa), and up-sampling the sparse beam from accelerator codes to a finer distribution more suitable for a FEL simulation.
 
+The supplied Python script `fullConv.py` utilizes the main components in this package as an example. It takes a particle file in [SU format](https://github.com/UKFELs/FXFEL), matches the beam to a FEL undulator line employing a FODO focusing channel, upsamples the beam for use in a FEL code, and then scales the data for input into [Puffin](https://github.com/UKFELs/Puffin).
 
+## To Install
+
+Do
+
+```
+pip install .
+```
+
+in this directory to install as a Python package. The Python package `paraffin` will then be available for use in your own Python scripts or functions (see the supplied exemplar `fullConv.py` script for an example of use).
 
 ## Beam matching/FEL FODO lattice routines:
 
@@ -52,7 +62,7 @@ twxt, twyt = getBeamTwiss(MPs)
 ```
 This calculates and returns the Twiss parameters, in x and y respectively, of the beam in the input array MPs.
 
-### Setting up the elements
+### Setting up the undulator beam line elements
 
 The undulator is setup with reference to the Puffin scaling class, and is defined using the number of undulator periods, the type of undulator (a string, which is blank, indicating the Puffin variably polarized undulator, or one of `helical`, `planepole` or `curved`), the polarization (given by ux and uy, which is ignored if any but the Puffin variably polarized undulator is used), and the in-undulator *strong* focusing wavenumber in x and y. A simple setup would be:
 
