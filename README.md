@@ -55,7 +55,7 @@ Same as `getFODOTwiss`, but for a single undulator rather than a periodic lattic
 ```
 x2, px2, y2, py2 = matchTwiss(x, px, y, py, TX1, TX2, TY1, TY2)
 ```
-This performs a transform on the given beam transverse coordinates, to match *from* Twiss parameters `TX1` and `TY1` to `TX2` and `TY2`. In this case, Twiss parameters take the form of a 2-element list or array, containing beta, and alpha. Particle coordinates are input as arrays, `x` and `y` are the particle coordinates in meters, and `px` and `py` are the transverse phase space coordinates `dx/dz` and `dy/dz`, respectively.
+This performs a transform on the given beam transverse coordinates, to match *from* Twiss parameters `TX1` and `TY1` to `TX2` and `TY2`. In this case, Twiss parameters take the form of a 2-element list or array, containing beta, and alpha. Particle coordinates are input as arrays, where `x` and `y` are the particle coordinates in meters, and `px` and `py` are the transverse phase space coordinates `dx/dz` and `dy/dz`, respectively.
 
 ```
 twxt, twyt = getBeamTwiss(MPs)
