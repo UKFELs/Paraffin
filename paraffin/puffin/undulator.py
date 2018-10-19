@@ -5,8 +5,8 @@
 """
 This file is part of the example post-processing tools for Puffin, a 
 multi-frequency FEL code absent of the averaging / SVEA approximations. It
-contains the object definition of the puffData class, used for holding the
-scaling and mesh data about the simulation.
+contains the object definition of the undulator class, used for holding the
+description of an undulator module.
 """
 
 import sys, glob, os

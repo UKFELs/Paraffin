@@ -3,3 +3,7 @@
 # License: BSD-3-Clause
 
 from SUMatch import SU2Matched
+from getTwiss import getMatchTwiss
+from getTwiss import getFODOTwiss
+from getTwiss import getUndTwiss
+from getBeamTwiss import getTwiss as getBeamTwiss
