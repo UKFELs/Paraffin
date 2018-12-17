@@ -115,11 +115,14 @@ def currentSmoothing(z, wghts, zst, zed, bnz, S_factor, plotname = False):
     	qplots = True
 
     # Create histogram for Z direction and stretch it using S_factor
-    Hz, edges_Z = np.histogramdd(z, bins = bnz,range=((zst,zed),(zst,zed)),normed=False,weights=wghts)
+    #Hz, edges_Z = np.histogramdd(z, bins = bnz,range=((zst,zed),(zst,zed)),normed=False,weights=wghts)
+    Hz, edges_Z = np.histogram(z, bins = bnz,range=(zst,zed),normed=False,weights=wghts)
 
     # Create equispaced points 
-    x0_Z = np.linspace(0.5*(edges_Z[0][0]+edges_Z[0][1]),0.5*(edges_Z[0][bnz]+edges_Z[0][bnz-1]),bnz)
-    y0_Z = Hz / (edges_Z[0][1] - edges_Z[0][0])
+    #x0_Z = np.linspace(0.5*(edges_Z[0][0]+edges_Z[0][1]),0.5*(edges_Z[0][bnz]+edges_Z[0][bnz-1]),bnz)
+    #y0_Z = Hz / (edges_Z[0][1] - edges_Z[0][0])
+    x0_Z = np.linspace(0.5*(edges_Z[0]+edges_Z[1]),0.5*(edges_Z[bnz]+edges_Z[bnz-1]),bnz)
+    y0_Z = Hz / (edges_Z[1] - edges_Z[0])
 
     # If user want to use LSQ interpolation then unhash next three lines and comment the line where RBF is used 
     #z_hst_lngth=np.max(x0_Z)-np.min(x0_Z)
