@@ -73,3 +73,6 @@ undmod = undulator(puffVars, undtype = '', Nw = 26, ux = 1., uy = 0.)
 The focusing factor of the quads, given by F = (rho B) / (g L), where (rho B) is the magnetic rigidity, g is the gradient of the quad field (i.e. dBy/dx) and L is the length of the quad (in meters). (thin quad approximation)
 
 The drift is defined in meters.
+
+We gratefully acknowledge the support of STFC's ASTeC department for HPC access, using the STFC Hartree Centre,
+and the John von Neumann Institute for Computing (NIC) on JUROPA at Julich Supercomputing Centre (JSC), under project HHH20
